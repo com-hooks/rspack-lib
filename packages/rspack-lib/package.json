@@ -1,6 +1,6 @@
 {
   "name": "rspack-lib",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "rspack lib 编译 rust library build tool.",
   "main": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -17,6 +17,10 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/types/index.d.ts"
     }
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/com-hooks/rspack-lib"
   },
   "keywords": [
     "rspack",
@@ -39,9 +43,7 @@
     "@rspack/core": "1.0.0-alpha.5",
     "commander": "^12.1.0",
     "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
     "node-logger-plus": "^0.2.4",
-    "node-polyfill-webpack-plugin": "^4.0.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

@@ -7,7 +7,6 @@ module.exports = {
         extensions: ['.ts', '.js', '.json', ".wasm"],
     },
     externals: {
-        'lodash-es': 'lodash-es',
         '@rspack/cli': '@rspack/cli',
         '@rspack/core': '@rspack/core',
         'ts-node': 'ts-node',
