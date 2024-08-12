@@ -7,6 +7,7 @@ export interface RspackLibOptions {
     rspack: RspackOptions,
     lib?: RspackOptions[],
 }
+
 export function defineConfig(config: RspackLibOptions): RspackLibOptions {
     return {
         rspack: rsDefineConfig(config.rspack),
@@ -14,13 +15,11 @@ export function defineConfig(config: RspackLibOptions): RspackLibOptions {
     }
 }
 
-export const configName = 'rspack.lib.config.js';
 export class RsLibConfig {
     constructor() {
         
     }
     public static resolve(name: string) {
-        // @ts-ignore
-        return __non_webpack_require__(path.resolve(process.cwd(), name));
+        return require(path.resolve(process.cwd(), name));
     }
 }

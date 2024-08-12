@@ -1,10 +1,13 @@
 import { rspack, Stats } from '@rspack/core';
-import { RsLibConfig, configName, RspackLibOptions } from './config';
+import { RsLibConfig, RspackLibOptions } from './config';
 import { logger } from 'node-logger-plus';
+import { program } from 'commander';
+
 
 export function rslibPackages() {
     try {
-        runBuilds(RsLibConfig.resolve(configName));
+        const config = program.getOptionValue('config');
+        runBuilds(RsLibConfig.resolve(config));
     } catch (err) {
         logger.error(err.message.split('\n')[0]);
     }

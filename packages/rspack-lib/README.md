@@ -3,15 +3,19 @@
 ### install
 ```shell
 $ npm install rspack-lib --save-dev
-# or pnpm add rspack-lib -D
+# or
+# pnpm add rspack-lib -D
 ```
 
 ### 命令
 - package.json
+- rspack-lib 启动
+- rspack-lib --config 自定义加载config文件
 ```json
   {
     "scripts": {
       "lib": "rspack-lib",
+      "lib2": "rspack-lib --config rspack.lib2.config.js",
     },
   }
 ```

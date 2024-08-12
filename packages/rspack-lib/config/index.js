@@ -2,7 +2,7 @@
 module.exports = {
     entry: "./src/index.ts",
     devtool: false,
-
+    watch: true,
     resolve: {
         extensions: ['.ts', '.js', '.json', ".wasm"],
     },
