@@ -1,0 +1,50 @@
+{
+  "name": "rspack-lib",
+  "version": "0.1.0",
+  "description": "rspack lib 编译 rust library build tool.",
+  "main": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "build": "node ./rspack.lib.config.js && npx tsc",
+    "dev": "nodemon ./bin/rslib.js"
+  },
+  "bin": {
+    "rspack-lib": "./bin/rslib.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "keywords": [
+    "rspack",
+    "rspack-lib",
+    "lib",
+    "编译",
+    "rust",
+    "library"
+  ],
+  "files": [
+    "packages.json",
+    "README.md",
+    "dist",
+    "bin"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rspack/cli": "^0.7.5",
+    "@rspack/core": "1.0.0-alpha.5",
+    "commander": "^12.1.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "node-logger-plus": "^0.2.4",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

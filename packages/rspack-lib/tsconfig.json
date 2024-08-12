@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist/esm",
+      "baseUrl": "./",
+      "rootDir": "src",
+      "declaration": true,
+      "declarationDir": "./dist/types",
+      "module": "esnext", // 指定输出模块系统为ES模块
+      "target": "es2015", // 指定目标ECMAScript版本，这里是ES6
+      "moduleResolution": "node", // 模块解析策略
+      "esModuleInterop": true // 启用ES模块互操作性
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": ["node_modules"],
+  }
