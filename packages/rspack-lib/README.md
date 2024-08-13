@@ -44,7 +44,7 @@ runBuilds({
 - 运行目录创建 rspack.lib.config.js
 - `rspack-dts-plugin` https://www.npmjs.com/package/rspack-dts-plugin?activeTab=readme
 ```js
-const { defineConfig } = require("rspack-lib");
+const { defineConfig, usePreEsModuleConfig } = require("rspack-lib");
 const { RspackDtsPlugin } = require('rspack-dts-plugin');
 
 module.exports = defineConfig({
@@ -58,30 +58,18 @@ module.exports = defineConfig({
           type: "commonjs2",
         },
       },
+      // 注册生成ts描述文件插件
+      plugins: [new RspackDtsPlugin()],
     },
     // 编译esmodule
-    {
-      output: {
-        module: true,
-        chunkFormat: "module",
-        filename: "index.mjs",
-        chunkFormat: "module",
-        library: {
-          type: "module",
+     usePreEsModuleConfig({
+        output: {
+            filename: 'index.mjs',
         },
-      },
-      optimization: {
-        concatenateModules: true,
-      },
-      experiments: {
-        outputModule: true,
-      },
-    },
+    }),
   ],
   // rspack 配置
   rspack: {
-    // 生成ts描述文件
-     plugins: [new RspackDtsPlugin()],
     entry: "./src/index.ts",
     devtool: false,
     resolve: {

@@ -1,4 +1,4 @@
-const { defineConfig } = require('rspack-lib');
+const { defineConfig, usePreEsModuleConfig } = require('rspack-lib');
 const { RspackDtsPlugin } = require('rspack-dts-plugin');
 
 module.exports = defineConfig({
@@ -11,26 +11,14 @@ module.exports = defineConfig({
                 }
             }
         },
-        {
-
+        usePreEsModuleConfig({
             output: {
-                module: true,
                 filename: 'index.mjs',
-                chunkFormat: 'module',
-                library: {
-                    type: 'module',
-                }
             },
-            optimization: {
-                concatenateModules: true,
-            },
-            experiments: {
-                outputModule: true,
-            },
-        },
+            plugins: [new RspackDtsPlugin()],
+        }),
     ],
     rspack: {
-        plugins: [new RspackDtsPlugin()],
         entry: './src/index.ts',
         devtool: false,
         resolve: {

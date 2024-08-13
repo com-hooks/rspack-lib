@@ -14,6 +14,11 @@ export interface RspackLibOptions {
     plugins?: RspackPluginInstance[],
 }
 
+/**
+ * 定义 rspack lib options
+ * @param config 
+ * @returns 
+ */
 export function defineConfig(config: RspackLibOptions): RspackLibOptions {
     return {
         rspack: rsDefineConfig(config.rspack),
@@ -29,4 +34,28 @@ export class RsLibConfig {
     public static resolve(name: string) {
         return require(path.resolve(process.cwd(), name));
     }
+}
+
+/**
+ * 预设的esmodule格式
+ * @param options 
+ * @returns 
+ */
+export function usePreEsModuleConfig(options: RspackOptions): RspackOptions {
+    return merge({
+        output: {
+            module: true,
+            filename: 'esm/index.js',
+            chunkFormat: 'module',
+            library: {
+                type: 'module',
+            }
+        },
+        optimization: {
+            concatenateModules: true,
+        },
+        experiments: {
+            outputModule: true,
+        },
+    }, options);
 }
