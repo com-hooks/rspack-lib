@@ -7,7 +7,7 @@ export class RspackDtsPlugin {
         this.options = options;
     }
     apply(compiler) {
-        compiler.hooks.beforeRun.tap('beforeRun', () => {
+        compiler.hooks.initialize.tap('initialize', () => {
             buildDts(this.options);
         });
     }
