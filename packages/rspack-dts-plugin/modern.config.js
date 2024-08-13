@@ -7,12 +7,12 @@ export default defineConfig({
     {
       outDir: './dist/cjs',
       format: 'cjs',
-      dts: false
+      dts: false,
     },
     {
       outDir: './dist/esm',
       format: 'esm',
-      dts: false
+      dts: false,
     },
     {
       buildType: 'bundle',

@@ -1,14 +1,11 @@
 {
-  "name": "rspack-lib",
-  "version": "0.1.4",
-  "description": "rspack lib 编译 rust library build tool.",
+  "name": "rspack-dts-plugin",
+  "version": "0.1.0",
+  "description": "",
   "main": "./dist/cjs/index.js",
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "build": "modern build"
-  },
-  "bin": {
-    "rspack-lib": "./bin/rslib.js"
   },
   "exports": {
     ".": {
@@ -23,30 +20,18 @@
     "url": "https://github.com/com-hooks/rspack-lib"
   },
   "keywords": [
-    "rspack",
-    "rspack-lib",
     "lib",
     "编译",
     "rust",
-    "library"
-  ],
-  "files": [
-    "packages.json",
-    "README.md",
-    "dist",
-    "bin"
+    "tsc",
+    ".d.ts",
+    "typescript",
+    "dts"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rspack/cli": "^0.7.5",
-    "@rspack/core": "1.0.0-alpha.5",
-    "commander": "^12.1.0",
-    "lodash": "^4.17.21",
     "node-logger-plus": "^0.2.4",
-    "ts-node": "^10.9.2"
-  },
-  "devDependencies": {
     "typescript": "^5.5.4"
   }
 }

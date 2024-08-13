@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "node-logger-plus": "^0.2.4",
+    "rspack-dts-plugin": "link:..\\..\\packages\\rspack-dts-plugin",
     "rspack-lib": "link:..\\..\\packages\\rspack-lib"
   }
 }

@@ -8,7 +8,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "esModuleInterop": true, // 启用ES模块互操作性
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2015", "DOM"]
   },
   "include": [
     "src/**/*.ts"

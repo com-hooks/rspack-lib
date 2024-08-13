@@ -2,9 +2,9 @@
 
 ### install
 ```shell
-$ npm install rspack-lib --save-dev
+$ npm install rspack-lib --save-dev rspack-dts-plugin --save-dev
 # or
-# pnpm add rspack-lib -D
+# pnpm add rspack-lib -D rspack-dts-plugin -D
 ```
 
 ### 命令
@@ -44,6 +44,7 @@ runBuilds({
 - 运行目录创建 rspack.lib.config.js
 ```js
 const { defineConfig } = require("rspack-lib");
+const { RspackDtsPlugin } = require('rspack-dts-plugin');
 
 module.exports = defineConfig({
   // 会合并rspack中的配置
@@ -78,6 +79,8 @@ module.exports = defineConfig({
   ],
   // rspack 配置
   rspack: {
+    // 生成ts描述文件
+     plugins: [new RspackDtsPlugin()],
     entry: "./src/index.ts",
     devtool: false,
     resolve: {

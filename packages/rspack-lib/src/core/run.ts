@@ -1,4 +1,4 @@
-import { rspack, Stats } from '@rspack/core';
+import { Compiler, rspack, Stats } from '@rspack/core';
 import { RsLibConfig, RspackLibOptions } from './config';
 import { logger } from 'node-logger-plus';
 import { program } from 'commander';
@@ -13,14 +13,14 @@ export function rslibPackages() {
     }
 }
 
-export function runBuilds(libConfig: RspackLibOptions, callback?: (err: Error, stats: Stats, index: number) => void): void {
+export function runBuilds(libConfig: RspackLibOptions, callback?: (err: Error, stats: Stats, index: number) => void): Compiler | void {
     const libLen = libConfig?.lib?.length ?? 0;
     if (!libLen && !libConfig.rspack) {
         logger.info(`lib length ${libLen}`, 'build closed');
         return;
     }
     if (!libLen) {
-        rspack(libConfig.rspack, (err, stats) => {
+        return rspack(libConfig.rspack, (err, stats) => {
             callback?.(err, stats, -1);
             const error = err || stats?.hasErrors();
             if (error) {
@@ -28,12 +28,11 @@ export function runBuilds(libConfig: RspackLibOptions, callback?: (err: Error, s
             }
             logger.success('Successify!');
         });
-        return;
     }
     libConfig.lib.forEach((conf, index) => {
         const name = conf?.output?.filename ?? 'library';
         try {
-            rspack(conf, (err, stats) => {
+            return rspack(conf, (err, stats) => {
                 callback?.(err, stats, index);
                 const error = err || stats?.hasErrors();
                 if (error) {
@@ -43,8 +42,7 @@ export function runBuilds(libConfig: RspackLibOptions, callback?: (err: Error, s
             });
 
         } catch (err) {
-            logger.error(`[${name}] index: ${index}` + err.message.split('\n')[0]);
+            logger.error(`[${name}] index: ${index} ` + err.message.split('\n')[0]);
         }
     });
-    return;
 }
