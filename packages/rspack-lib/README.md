@@ -42,6 +42,7 @@ runBuilds({
 
 ### 配置文件
 - 运行目录创建 rspack.lib.config.js
+- `rspack-dts-plugin` https://www.npmjs.com/package/rspack-dts-plugin?activeTab=readme
 ```js
 const { defineConfig } = require("rspack-lib");
 const { RspackDtsPlugin } = require('rspack-dts-plugin');

@@ -17,8 +17,16 @@
   },
   "repository": {
     "type": "github",
-    "url": "https://github.com/com-hooks/rspack-lib"
+    "url": "https://github.com/com-hooks/rspack-lib/tree/main/packages/rspack-dts-plugin"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "keywords": [
     "lib",
     "编译",
