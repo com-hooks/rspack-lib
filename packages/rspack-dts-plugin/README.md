@@ -71,5 +71,11 @@ type RspackDtsPluginOptions = {
      * ts rootDir
      */
     rootDir?: 'src';
+    /**
+     * library.name和only同时成立的时候生成namespace
+     * 优先级 this => output.library.name
+     * @default undefined;
+     */
+    name?: string;
 };
 ```

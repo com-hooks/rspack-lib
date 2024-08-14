@@ -28,4 +28,9 @@ export type RspackDtsPluginOptions = {
      * ts rootDir
      */
     rootDir?: 'src';
+    /**
+     * library name
+     * @default undefined;
+     */
+    name?: string;
 } 

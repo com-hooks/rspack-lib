@@ -3,10 +3,10 @@ import { emitDts } from './tsc';
 import { RspackDtsPluginOptions } from './types';
 import { mergeRspackDtsPluginOptions } from './config';
 import { logger } from 'node-logger-plus';
-
+import { RspackOptionsNormalized } from '@rspack/core';
 const { options: rawCompilerOptions, fileNames } = loadTsconfig('tsconfig.json');
 
-export function buildDts(options: RspackDtsPluginOptions) {
+export function buildDts(options: RspackDtsPluginOptions, rspackOptions: RspackOptionsNormalized) {
     const rslibDtsOptions = mergeRspackDtsPluginOptions(options);
     const { dts, only, outputDir, rootDir, outFile } = rslibDtsOptions;
     if (!dts) {
@@ -26,5 +26,5 @@ export function buildDts(options: RspackDtsPluginOptions) {
         rawCompilerOptions,
         fileNames,
         rslibDtsOptions,
-    })
+    }, rspackOptions)
 }

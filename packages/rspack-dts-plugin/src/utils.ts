@@ -42,10 +42,10 @@ export function useDtsOnly({
             transformBundle(node: ts.Bundle) {
                 transpileOutputBundleList.splice(0, transpileOutputBundleList.length);
                 node.sourceFiles.forEach(sourceFile => {
-                    const transpileOutput = ts.transpileDeclaration(sourceFile.text, { 
+                    const transpileOutput = ts.transpileDeclaration(sourceFile.text, {
                         fileName: sourceFile.fileName,
                         compilerOptions,
-                     });
+                    });
                     transpileOutputBundleList.push({
                         transpileOutput,
                         sourceFile,
@@ -55,4 +55,14 @@ export function useDtsOnly({
             }
         }
     }
+}
+
+export function formatSourceFileTextByNamespace(newDeclarationOutPutText: string) {
+    return newDeclarationOutPutText.split("\n").map(line => {
+        // /^export *namespace (.*) {$/
+        if (/\.\/|\.\.\//.test(line) && /from/.test(line)) {
+            return `    // ${line}`;
+        }
+        return '    ' + line.replace(' declare', '');
+    }).join("\n");
 }

@@ -20,6 +20,15 @@ importers:
       nodemon:
         specifier: ^3.1.4
         version: 3.1.4
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  __tests__:
+    dependencies:
+      '@example/testings':
+        specifier: link:..\example\test
+        version: link:../example/test
 
   example/test:
     dependencies:

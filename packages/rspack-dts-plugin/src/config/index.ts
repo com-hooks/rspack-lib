@@ -4,7 +4,8 @@ export const rspackDtsPluginOptions: RspackDtsPluginOptions = {
     only: false,
     outputDir: './dist/types',
     outFile: './dist/types/index',
-    rootDir: 'src'
+    rootDir: 'src',
+    name: undefined,
 }
 
 export function mergeRspackDtsPluginOptions(...options: RspackDtsPluginOptions[]): RspackDtsPluginOptions {

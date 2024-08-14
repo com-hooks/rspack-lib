@@ -9,15 +9,17 @@ module.exports = defineConfig({
             output: {
                 filename: 'index.cjs',
                 library: {
-                    type: 'commonjs2',
-                }
-            }
+                    name: "exampleTest",
+                    type: 'commonjs',
+                },
+            },
+            plugins: [new RspackDtsPlugin({ only: true })],
         },
         usePreEsModuleConfig({
             output: {
                 filename: 'index.mjs',
             },
-            plugins: [new RspackDtsPlugin({ only: false })],
+          
         }),
     ],
     rspack: {

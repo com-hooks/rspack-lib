@@ -1,0 +1,15 @@
+{
+  "name": "__tests__",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon ./test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@example/testings": "link:..\\example\\test"
+  }
+}

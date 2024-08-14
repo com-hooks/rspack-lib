@@ -1,7 +1,8 @@
 import * as ts from 'typescript';
-import { getFileLoc, useDtsOnly, transpileOutputBundleList } from './utils';
+import { getFileLoc, useDtsOnly, transpileOutputBundleList, formatSourceFileTextByNamespace } from './utils';
 import { logger } from 'node-logger-plus';
 import { RspackDtsPluginOptions } from './types';
+import type { RspackOptionsNormalized } from '@rspack/core';
 
 export function emitDts({
     rawCompilerOptions,
@@ -11,7 +12,9 @@ export function emitDts({
     rawCompilerOptions: ts.CompilerOptions;
     fileNames: string[];
     rslibDtsOptions: RspackDtsPluginOptions;
-}) {
+},
+    rspackOptions: RspackOptionsNormalized
+) {
     const compilerOptions = {
         ...rawCompilerOptions,
         noEmit: false,
@@ -25,9 +28,22 @@ export function emitDts({
     host.writeFile = (fileName: string, contents: string) => {
         createFiles[fileName] = contents;
         if (rslibDtsOptions.only) {
-            const newDeclarationOutPutText = transpileOutputBundleList.map(item => {
+            let newDeclarationOutPutText = transpileOutputBundleList.map(item => {
                 return item.transpileOutput.outputText;
             }).join('');
+            const rspackLibraryName = rspackOptions.output.library.name;
+            const libraryName = rslibDtsOptions.name ||
+                (typeof rspackLibraryName === 'string' ?
+                    rspackLibraryName :
+                    Array.isArray(rspackLibraryName) ?
+                        rspackLibraryName[0] :
+                        typeof rspackLibraryName === 'object' ?
+                            rspackLibraryName.commonjs.toString() :
+                            rspackLibraryName);
+            libraryName && logger.debug('libraryName:', libraryName);
+            if(libraryName) {
+                newDeclarationOutPutText = `export declare namespace ${libraryName} {\n${formatSourceFileTextByNamespace(newDeclarationOutPutText)}\n}`;
+            }
             ts.sys.writeFile(fileName, newDeclarationOutPutText);
         } else {
             ts.sys.writeFile(fileName, contents);
@@ -48,8 +64,8 @@ export function emitDts({
     const allDiagnostics = ts
         .getPreEmitDiagnostics(program)
         .concat(emitResult.diagnostics)
-        // 考虑要不要显示呢？
-        // .concat(transpileOutputBundleList.map(item => item.transpileOutput?.diagnostics ?? []).flat());
+    // 考虑要不要显示呢？
+    // .concat(transpileOutputBundleList.map(item => item.transpileOutput?.diagnostics ?? []).flat());
 
     const diagnosticMessages: string[] = [];
     logger.success("TypeScript EmitDiagnostics closed successfully");
