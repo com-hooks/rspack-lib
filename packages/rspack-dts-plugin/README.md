@@ -35,6 +35,12 @@ module.exports = {
     }
 ```
 
+### API 
+- 触发编译 dts
+```js
+declare function buildDts(options: RspackDtsPluginOptions): void;
+```
+
 ### RspackDtsPluginOptions
 ```ts
 /**

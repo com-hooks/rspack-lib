@@ -1,6 +1,5 @@
 import * as ts from 'typescript';
-// @ts-ignore
-import path from 'node:path';
+import path from 'path';
 
 export function loadTsconfig(tsconfigPath: string): ts.ParsedCommandLine {
     // Load and parse the TypeScript configuration file.
@@ -28,3 +27,32 @@ export function getFileLoc(diagnostic: ts.Diagnostic): string {
     return '';
 }
 
+export const transpileOutputBundleList: ({ transpileOutput: ts.TranspileOutput; sourceFile: ts.SourceFile; })[] = [];
+
+export function useDtsOnly({
+    compilerOptions,
+}: {
+    compilerOptions: ts.CompilerOptions
+}) {
+    return () => {
+        return {
+            transformSourceFile(node: ts.SourceFile) {
+                return node;
+            },
+            transformBundle(node: ts.Bundle) {
+                transpileOutputBundleList.splice(0, transpileOutputBundleList.length);
+                node.sourceFiles.forEach(sourceFile => {
+                    const transpileOutput = ts.transpileDeclaration(sourceFile.text, { 
+                        fileName: sourceFile.fileName,
+                        compilerOptions,
+                     });
+                    transpileOutputBundleList.push({
+                        transpileOutput,
+                        sourceFile,
+                    });
+                });
+                return node;
+            }
+        }
+    }
+}

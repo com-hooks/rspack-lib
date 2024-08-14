@@ -7,7 +7,8 @@ import { logger } from 'node-logger-plus';
 const { options: rawCompilerOptions, fileNames } = loadTsconfig('tsconfig.json');
 
 export function buildDts(options: RspackDtsPluginOptions) {
-    const { dts, only, outputDir, rootDir, outFile } = mergeRspackDtsPluginOptions(options);
+    const rslibDtsOptions = mergeRspackDtsPluginOptions(options);
+    const { dts, only, outputDir, rootDir, outFile } = rslibDtsOptions;
     if (!dts) {
         return;
     }
@@ -24,5 +25,6 @@ export function buildDts(options: RspackDtsPluginOptions) {
     emitDts({
         rawCompilerOptions,
         fileNames,
+        rslibDtsOptions,
     })
 }

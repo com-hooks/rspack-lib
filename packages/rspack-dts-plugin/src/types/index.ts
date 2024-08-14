@@ -10,7 +10,7 @@ export type RspackDtsPluginOptions = {
     dts?: boolean;
     /**
       * 是否生成一个.d文件
-      * @default true
+      * @default false
       */
     only?: boolean;
     /**

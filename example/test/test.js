@@ -1,3 +1,5 @@
-// import { testLibBuild } from './dist/index.mjs';
-const { testLibBuild } = require('./dist/index.cjs');
+// @ts-check
+
+import { testLibBuild } from 'test';
+// const { testLibBuild } = require('test');
 console.log(testLibBuild)

@@ -14,6 +14,9 @@ importers:
       '@rspack/core':
         specifier: 1.0.0-alpha.5
         version: 1.0.0-alpha.5(@swc/helpers@0.5.3)
+      '@types/node':
+        specifier: ^22.2.0
+        version: 22.2.0
       nodemon:
         specifier: ^3.1.4
         version: 3.1.4

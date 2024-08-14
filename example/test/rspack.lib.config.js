@@ -1,3 +1,5 @@
+// @ts-check
+
 const { defineConfig, usePreEsModuleConfig } = require('rspack-lib');
 const { RspackDtsPlugin } = require('rspack-dts-plugin');
 
@@ -15,7 +17,7 @@ module.exports = defineConfig({
             output: {
                 filename: 'index.mjs',
             },
-            plugins: [new RspackDtsPlugin()],
+            plugins: [new RspackDtsPlugin({ only: false })],
         }),
     ],
     rspack: {

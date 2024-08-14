@@ -11,4 +11,8 @@ export class RspackDtsPlugin {
             buildDts(this.options);
         });
     }
-}                               
+}
+
+export {
+    buildDts,
+}
